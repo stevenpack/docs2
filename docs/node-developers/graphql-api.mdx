@@ -10,6 +10,8 @@ hide_title: true
 - Mina APIs are still under construction, so these endpoints may change.
 - By default, the GraphQL port is bound to localhost. Exposing the GraphQL API to the internet allows anyone to send Mina from the accounts known to the daemon.
 
+
+
 :::
 
 The Mina daemon exposes a [GraphQL API](https://graphql.org/) used to request information from and submit commands to a running node. 
@@ -19,6 +21,12 @@ To use the GraphQL API, connect your GraphQL client to `http://localhost:3085/gr
 - By default, an HTTP server runs on port `3085`. You can configure a different port, use the `-rest-port` flag with the daemon startup command.
 
 - The default security permits only connections from `localhost`. To listen on all interfaces, add the `-insecure-rest-server` flag to the daemon startup command.
+
+:::caution
+
+If you're running the daemon in a docker container, this means you have attach to the docker container to query graphql. You can't query from the host
+
+:::
 
 In addition to information about the running node, the GraphQL API can return data about the network's latest blocks. However, as the blockchain's historical state is not persisted in Mina, only blocks in the node's transition frontier are returned, i.e., the last `k` blocks. For other historical data, use the [Archive Node](/node-operators/archive-node) that is designed to retain and retrieve historical data.
 
